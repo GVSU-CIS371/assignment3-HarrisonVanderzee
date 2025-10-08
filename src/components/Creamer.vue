@@ -1,10 +1,25 @@
 <template>
-  <div class="froth">
+  <div class="froth" v-if="currentCreamer?.id === 'c1'" :style="{backgroundColor: creamers[0].color}">
+    <div v-for=" in 5" class="foam"></div>
+  </div>
+  <div class="froth" v-else-if="currentCreamer?.id === 'c2'" :style="{backgroundColor: creamers[1].color}">
+    <div v-for=" in 5" class="foam"></div>
+  </div>
+  <div class="froth" v-else-if="currentCreamer?.id === 'c3'" :style="{backgroundColor: creamers[2].color}">
+    <div v-for=" in 5" class="foam"></div>
+  </div>
+  <div class="froth" v-else="currentCreamer?.id === 'c4'" :style="{backgroundColor: creamers[3].color}">
     <div v-for=" in 5" class="foam"></div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from 'vue'
+import { creamerStore } from "../stores/beverage";
+const creamerState = creamerStore();
+const currentCreamer = computed(() => creamerState.currentCreamer);
+const creamers = creamerState.creamers;
+</script>
 <style lang="scss" scoped>
 .froth {
   overflow: visible;
