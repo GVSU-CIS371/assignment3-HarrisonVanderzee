@@ -3,6 +3,8 @@ import { createPinia } from 'pinia'
 import './styles/mug.scss'
 import App from './App.vue'
 
+const pinia = createPinia()
+
 createApp(App)
-    .use(createPinia())
+    .use(pinia)
     .mount('#app')
